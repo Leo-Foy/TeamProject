@@ -63,8 +63,7 @@ class TodoApp {
       }
       else if (req.body.filterBy == 'date') {
         //convert string to date, look at julianna's code (calendar and utility code)
-        d = new Date(req.body.filter);
-        q = {date : d};
+        q = {date : new Date(req.body.filter)};
       }
       else if (req.body.filterBy == 'type') {
         //make an alert of some sort on the page
@@ -75,6 +74,9 @@ class TodoApp {
       }
       else if (req.body.filterBy == 'priority') {
         q = {priority : req.body.filter };
+      }
+      else if (req.body.filterBy == 'tag') {
+        q = {tag : req.body.filter };
       }
 
       let res = await util.read(this.uri, this.database, this.posts, q) 
@@ -196,36 +198,6 @@ async runJsonGet(req, resp) {
       console.log(error)
       resp.status(500).render('error.ejs', {error: error.message});
     }
-  }
-
-  async runListFilter(req, resp) {
-    try {
-      //add check to see what drop down the user selected
-      let q;
-      if (req.body.filterBy == 'title') {
-        q = {title : req.body.filter};
-      }
-      else if (req.body.filterBy == 'date') {
-        q = {date : req.body.filter};
-      }
-      else if (req.body.filterBy == '-filter type-') {
-        q = {};
-      }
-      else if (req.body.filterBy == 'all') {
-        q = {};
-      }
-
-      let res = await util.read(this.uri, this.database, this.posts, q) 
-      if (res.length == 0) {
-        resp.redirect('/list');
-      } else {
-        const query = { posts: res };
-        resp.render('list.ejs', query)
-      }   
-    } catch (e) {
-      console.error(e);
-      resp.status(500).send({ error: `Error from runListFilter: ${e.message}` })
-    } 
   }
 
   async runCalendarGet(req, res){
