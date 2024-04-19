@@ -199,7 +199,6 @@ async runJsonGet(req, resp) {
       resp.status(500).render('error.ejs', {error: error.message});
     }
   }
-
   async runCalendarGet(req, res){
     try{
       let allTasks = await util.read(this.uri, this.database, this.posts, {});
