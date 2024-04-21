@@ -63,7 +63,9 @@ class TodoApp {
       }
       else if (req.body.filterBy == 'date') {
         //convert string to date, look at julianna's code (calendar and utility code)
-        q = {date : new Date(req.body.filter)};
+        let d = String(req.body.filter);
+        console.log(d);
+        q = {date : new Date(d + 'T00:00:00.000+00:00')};
       }
       else if (req.body.filterBy == 'type') {
         //make an alert of some sort on the page

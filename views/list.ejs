@@ -64,7 +64,7 @@
                 <!-- Task Tag -->
             <p class="card-text">Tag: <%= posts[i].tag %></p>
             <!-- Due Date -->
-                <p class="card-text">Due: <%= new Date(posts[i].date).toLocaleDateString('en-US', { timeZone: 'America/New_York' }) %></p>
+                <p class="card-text">Due: <%= new Date(posts[i].date).toLocaleDateString('en-US', { timeZone: 'UTC' }) %></p>
               <% }else { %>
                 <% if (posts[i].priority === "high") { %>
                   <h4 class="card-title" style="color:red">
@@ -81,7 +81,7 @@
                 <!-- Task Tag -->
             <p class="card-text">Tag: <%= posts[i].tag %></p>
             <!-- Due Date (Overdue) -->
-                <p class="card-text">Due: <%= new Date(posts[i].date).toLocaleDateString('en-US', { timeZone: 'America/New_York' }) %> (Overdue)</p>
+                <p class="card-text">Due: <%= new Date(posts[i].date).toLocaleDateString('en-US', { timeZone: 'UTC' }) %> (Overdue)</p>
               <% } %>
                 <!-- Buttons -->
               <div>
