@@ -1,4 +1,5 @@
 #Progress:
-25% burndown
-38 LoC
+50% burndown
+lost track of LoC
 0 tests
+2 features
